@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -31,7 +32,11 @@ class ThreadPoolApplicationTests {
     @Test
     void multiProcess() {
         log.info("Multi process start");
-        List<Input> inputList = Arrays.asList(new Input(1), new Input(2), new Input(3));
+//        List<Input> inputList = Arrays.asList(new Input(1), new Input(2), new Input(3));
+        List<Input> inputList = new ArrayList<>();
+        for (int i = 0; i < 1000; i++) {
+            inputList.add(new Input(i));
+        }
         System.out.println(input2OutputService.multiProcess(inputList));
         log.info("Multi process end");
     }

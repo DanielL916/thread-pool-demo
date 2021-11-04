@@ -1,5 +1,9 @@
 thread-pool:
+  #  线程池维护线程的最小数量
   core-pool-size: 4
+  #  线程池维护线程的最大数量
   max-pool-size: 16
+  # 线程运行数量？？？
   queue-capacity: 80
+  #  空闲线程的存活时间
   keep-alive-seconds: 120
