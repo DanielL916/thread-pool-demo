@@ -24,6 +24,7 @@ import java.util.concurrent.Future;
 public class Input2OutputServiceImpl implements Input2OutputService {
     /**
      * 单个处理
+     *
      * @param input 输入对象
      * @return 输出对象
      */
@@ -39,8 +40,19 @@ public class Input2OutputServiceImpl implements Input2OutputService {
         return new Output(true, String.valueOf(2 * input.getI() + 1));
     }
 
+    @Override
+    public List<Output> singleProcess(List<Input> inputList) {
+        List<Output> outputList = Collections.synchronizedList(new ArrayList<>(inputList.size()));
+        for (Input input : inputList) {
+            Output output = singleProcess(input);
+            outputList.add(output);
+        }
+        return outputList;
+    }
+
     /**
      * 批量处理
+     *
      * @param inputList 输入对象列表
      * @return 输出对象列表
      */
@@ -75,6 +87,7 @@ public class Input2OutputServiceImpl implements Input2OutputService {
 
     /**
      * 异步处理
+     *
      * @param input 输入对象
      * @return 输出Future对象
      */

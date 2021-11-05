@@ -34,10 +34,21 @@ class ThreadPoolApplicationTests {
         log.info("Multi process start");
 //        List<Input> inputList = Arrays.asList(new Input(1), new Input(2), new Input(3));
         List<Input> inputList = new ArrayList<>();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 20; i++) {
             inputList.add(new Input(i));
         }
+        long startTime = System.currentTimeMillis();
         System.out.println(input2OutputService.multiProcess(inputList));
+        long endTime = System.currentTimeMillis();
+        float seconds = (endTime - startTime) / 1000F;
+        log.error("======= 多线程运行时间：" + Float.toString(seconds) + " seconds. ======= ");
+
+        long startTimeProcess = System.currentTimeMillis();
+        System.out.println(input2OutputService.singleProcess(inputList));
+        long endTimeProcess = System.currentTimeMillis();
+        float secondsProcess = (endTimeProcess - startTimeProcess) / 1000F;
+        log.error("======= 单线程运行时间：" + Float.toString(secondsProcess) + " seconds. ======= ");
+
         log.info("Multi process end");
     }
 

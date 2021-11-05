@@ -8,6 +8,7 @@ import java.util.concurrent.Future;
 
 public interface Input2OutputService {
     Output singleProcess(Input input);
+    List<Output> singleProcess(List<Input> inputList);
     List<Output> multiProcess(List<Input> inputList);
     Future<Output> asyncProcess(Input input);
 }
